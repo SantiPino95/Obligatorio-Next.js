@@ -1,77 +1,63 @@
 'use client';
 import { useState } from 'react';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
-import { platosService } from '@/services/platosServices';
-import { DISH_CATEGORIES_ARRAY } from '@/utils/constants';
 
 export default function NuevoPlatoPage() {
   const { user } = useAuth();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-  
+  const [cargando, setCargando] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     category: 'PRINCIPAL',
     price: '',
     description: '',
-    image: '',
-    localId: '' // ID del local al que pertenece
+    city: '',
+    localId: '',
+    image: ''
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
-
-    // Validaciones básicas
-    if (!formData.name || !formData.price || !formData.localId) {
-      setError('Completa los campos obligatorios');
-      return;
-    }
+    setCargando(true);
 
     try {
-      setLoading(true);
+      const token = localStorage.getItem('token');
       
-      // Convertir precio a número
-      const platoData = {
-        ...formData,
-        price: parseFloat(formData.price)
-      };
-
-      const response = await platosService.createPlato(platoData);
-      console.log('📍 Plato creado:', response);
-      
-      setSuccess('¡Plato creado exitosamente!');
-      
-      // Limpiar formulario
-      setFormData({
-        name: '',
-        category: 'PRINCIPAL',
-        price: '',
-        description: '',
-        image: '',
-        localId: ''
+      const respuesta = await fetch('https://api-react-taller-production.up.railway.app/api/dishes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          ...formData,
+          price: Number(formData.price)
+        })
       });
 
-      // Opcional: redirigir después de 2 segundos
-      setTimeout(() => {
-        router.push(`/plato/${response.id}`);
-      }, 2000);
-
-    } catch (err) {
-      console.error('📍 Error:', err);
-      setError(err.message || 'Error al crear el plato');
+      const datos = await respuesta.json();
+      console.log('✅ Plato creado:', datos);
+      
+      if (datos.id) {
+        router.push(`/plato/${datos.id}`);
+      } else {
+        router.push('/');
+      }
+      
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert('Error al crear el plato');
     } finally {
-      setLoading(false);
+      setCargando(false);
     }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   if (!user) {
@@ -80,196 +66,93 @@ export default function NuevoPlatoPage() {
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2rem' }}>
-      <h1 style={{ fontSize: '2rem', color: '#6b21a8', marginBottom: '2rem' }}>
-        🍲 Crear Nuevo Plato
-      </h1>
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
+      <h1>Crear Nuevo Plato</h1>
+      
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Nombre del plato *"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          style={{ padding: '10px' }}
+        />
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
-            Nombre del Plato *
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              border: '1px solid #d1d5db',
-              borderRadius: '0.375rem'
-            }}
-            required
-          />
-        </div>
+        <select
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          style={{ padding: '10px' }}
+        >
+          <option value="ENTRADA">Entrada</option>
+          <option value="PRINCIPAL">Principal</option>
+          <option value="POSTRE">Postre</option>
+          <option value="BEBIDA">Bebida</option>
+          <option value="OTROS">Otros</option>
+        </select>
 
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
-            Categoría *
-          </label>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              border: '1px solid #d1d5db',
-              borderRadius: '0.375rem'
-            }}
-            required
-          >
-            {DISH_CATEGORIES_ARRAY.map(cat => (
-              <option key={cat.value} value={cat.value}>
-                {cat.label}
-              </option>
-            ))}
-          </select>
-        </div>
+        <input
+          type="number"
+          name="price"
+          placeholder="Precio *"
+          value={formData.price}
+          onChange={handleChange}
+          required
+          style={{ padding: '10px' }}
+        />
 
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
-            Precio (en pesos) *
-          </label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              border: '1px solid #d1d5db',
-              borderRadius: '0.375rem'
-            }}
-            min="0"
-            step="1"
-            required
-          />
-        </div>
+        <textarea
+          name="description"
+          placeholder="Descripción"
+          value={formData.description}
+          onChange={handleChange}
+          style={{ padding: '10px', minHeight: '100px' }}
+        />
 
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
-            ID del Local *
-          </label>
-          <input
-            type="number"
-            name="localId"
-            value={formData.localId}
-            onChange={handleChange}
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              border: '1px solid #d1d5db',
-              borderRadius: '0.375rem'
-            }}
-            placeholder="Ej: 1, 2, 3..."
-            required
-          />
-          <small style={{ color: '#6b7280' }}>
-            Ingresa el ID del local al que pertenece este plato
-          </small>
-        </div>
+        <input
+          type="text"
+          name="city"
+          placeholder="Ciudad *"
+          value={formData.city}
+          onChange={handleChange}
+          required
+          style={{ padding: '10px' }}
+        />
 
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
-            Descripción
-          </label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            rows="4"
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              border: '1px solid #d1d5db',
-              borderRadius: '0.375rem'
-            }}
-          />
-        </div>
+        <input
+          type="number"
+          name="localId"
+          placeholder="ID del local *"
+          value={formData.localId}
+          onChange={handleChange}
+          required
+          style={{ padding: '10px' }}
+        />
 
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>
-            URL de la imagen
-          </label>
-          <input
-            type="url"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              border: '1px solid #d1d5db',
-              borderRadius: '0.375rem'
-            }}
-            placeholder="https://ejemplo.com/imagen.jpg"
-          />
-          <small style={{ color: '#6b7280' }}>
-            Opcional: URL de una imagen para el plato
-          </small>
-        </div>
+        <input
+          type="url"
+          name="image"
+          placeholder="URL de la imagen (opcional)"
+          value={formData.image}
+          onChange={handleChange}
+          style={{ padding: '10px' }}
+        />
 
-        {error && (
-          <div style={{
-            background: '#fee2e2',
-            color: '#b91c1c',
-            padding: '1rem',
-            borderRadius: '0.375rem'
-          }}>
-            {error}
-          </div>
-        )}
-
-        {success && (
-          <div style={{
-            background: '#dcfce7',
-            color: '#166534',
-            padding: '1rem',
-            borderRadius: '0.375rem'
-          }}>
-            {success}
-          </div>
-        )}
-
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              background: 'linear-gradient(to right, #9333ea, #db2777)',
-              color: 'white',
-              padding: '0.75rem 1.5rem',
-              border: 'none',
-              borderRadius: '0.375rem',
-              fontWeight: '600',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              opacity: loading ? 0.5 : 1
-            }}
-          >
-            {loading ? 'Creando...' : 'Crear Plato'}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => router.back()}
-            style={{
-              background: '#e5e7eb',
-              color: '#374151',
-              padding: '0.75rem 1.5rem',
-              border: 'none',
-              borderRadius: '0.375rem',
-              fontWeight: '600',
-              cursor: 'pointer'
-            }}
-          >
-            Cancelar
-          </button>
-        </div>
+        <button 
+          type="submit"
+          disabled={cargando}
+          style={{
+            padding: '15px',
+            background: 'green',
+            color: 'white',
+            border: 'none',
+            cursor: cargando ? 'not-allowed' : 'pointer'
+          }}
+        >
+          {cargando ? 'Creando...' : 'Crear Plato'}
+        </button>
       </form>
     </div>
   );

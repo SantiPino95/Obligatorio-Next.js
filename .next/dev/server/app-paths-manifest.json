@@ -1,0 +1,6 @@
+{
+  "/local/nuevo/page": "app/local/nuevo/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/usuario/[id]/page": "app/usuario/[id]/page.js"
+}

@@ -1,0 +1,606 @@
+[00:00:01.909] Server  LOG     ✓ Ready in 1336ms
+[00:00:04.761] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:36.467] Server  ERROR   ⨯ ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+
+
+
+./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+
+
+[00:03:38.389] Browser ERROR   uncaughtError: Error: ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+
+
+[00:03:38.835] Browser ERROR   ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:03:38.835] Browser ERROR   ./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:03:38.835] Browser ERROR   ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:03:38.835] Browser ERROR   ./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:03:38.835] Browser ERROR   ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:03:38.835] Browser ERROR   ./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:04:16.486] Browser ERROR   ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:04:16.486] Browser ERROR   ./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:04:17.472] Browser ERROR   ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:04:17.472] Browser ERROR   ./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:04:39.478] Browser ERROR   ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:04:39.478] Browser ERROR   ./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:04:42.482] Browser ERROR   ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:04:42.482] Browser ERROR   ./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:04:44.478] Browser ERROR   ./src/app/layout.js:14:25
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  15 |   return (
+  16 |     <html>
+  17 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:04:44.478] Browser ERROR   ./src/app/layout.js:14:1
+Ecmascript file had an error
+  12 |   );}
+  13 |
+> 14 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 15 |   return (
+     | ^^^^^^^^^^
+> 16 |     <html>
+     | ^^^^^^^^^^
+> 17 |       <body>
+     | ^^^^^^^^^^
+> 18 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 19 |       </body>
+     | ^^^^^^^^^^
+> 20 |     </html>
+     | ^^^^^^^^^^
+> 21 |   );
+     | ^^^^^^^^^^
+> 22 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:04:52.086] Server  LOG     ✓ Compiled in 98ms
+[00:04:53.785] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:53.422] Server  ERROR   ⨯ TypeError: Cannot destructure property 'login' of '{imported module ./src/context/AuthContext.jsx}.useAuth(...)' as it is undefined.
+[00:08:54.522] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:55.664] Browser ERROR   uncaughtError: TypeError: Cannot destructure property 'login' of '(0 , __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$AuthContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__.useAuth)(...)' as it is undefined.
+[00:09:25.362] Server  ERROR   ⨯ ./src/app/layout.js:18:25
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  19 |   return (
+  20 |     <html>
+  21 |       <body>
+
+the name `RootLayout` is defined multiple times
+
+
+
+./src/app/layout.js:18:1
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   return (
+     | ^^^^^^^^^^
+> 20 |     <html>
+     | ^^^^^^^^^^
+> 21 |       <body>
+     | ^^^^^^^^^^
+> 22 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 23 |       </body>
+     | ^^^^^^^^^^
+> 24 |     </html>
+     | ^^^^^^^^^^
+> 25 |   );
+     | ^^^^^^^^^^
+> 26 | }
+     | ^^
+
+the name `default` is exported multiple times
+
+
+[00:09:25.667] Server  LOG     ✓ Compiled in 29.1s
+[00:09:26.521] Browser ERROR   uncaughtError: Error: ./src/app/layout.js:18:25
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  19 |   return (
+  20 |     <html>
+  21 |       <body>
+
+the name `RootLayout` is defined multiple times
+
+
+[00:09:26.854] Browser ERROR   ./src/app/layout.js:18:25
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  19 |   return (
+  20 |     <html>
+  21 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:09:26.854] Browser ERROR   ./src/app/layout.js:18:1
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   return (
+     | ^^^^^^^^^^
+> 20 |     <html>
+     | ^^^^^^^^^^
+> 21 |       <body>
+     | ^^^^^^^^^^
+> 22 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 23 |       </body>
+     | ^^^^^^^^^^
+> 24 |     </html>
+     | ^^^^^^^^^^
+> 25 |   );
+     | ^^^^^^^^^^
+> 26 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:09:26.854] Browser ERROR   ./src/app/layout.js:18:25
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  19 |   return (
+  20 |     <html>
+  21 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:09:26.854] Browser ERROR   ./src/app/layout.js:18:1
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   return (
+     | ^^^^^^^^^^
+> 20 |     <html>
+     | ^^^^^^^^^^
+> 21 |       <body>
+     | ^^^^^^^^^^
+> 22 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 23 |       </body>
+     | ^^^^^^^^^^
+> 24 |     </html>
+     | ^^^^^^^^^^
+> 25 |   );
+     | ^^^^^^^^^^
+> 26 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:09:26.854] Browser ERROR   ./src/app/layout.js:18:25
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  19 |   return (
+  20 |     <html>
+  21 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:09:26.854] Browser ERROR   ./src/app/layout.js:18:1
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   return (
+     | ^^^^^^^^^^
+> 20 |     <html>
+     | ^^^^^^^^^^
+> 21 |       <body>
+     | ^^^^^^^^^^
+> 22 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 23 |       </body>
+     | ^^^^^^^^^^
+> 24 |     </html>
+     | ^^^^^^^^^^
+> 25 |   );
+     | ^^^^^^^^^^
+> 26 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:09:41.483] Browser ERROR   ./src/app/layout.js:18:25
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  19 |   return (
+  20 |     <html>
+  21 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:09:41.483] Browser ERROR   ./src/app/layout.js:18:1
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   return (
+     | ^^^^^^^^^^
+> 20 |     <html>
+     | ^^^^^^^^^^
+> 21 |       <body>
+     | ^^^^^^^^^^
+> 22 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 23 |       </body>
+     | ^^^^^^^^^^
+> 24 |     </html>
+     | ^^^^^^^^^^
+> 25 |   );
+     | ^^^^^^^^^^
+> 26 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:10:11.477] Browser ERROR   ./src/app/layout.js:18:25
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  19 |   return (
+  20 |     <html>
+  21 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:10:11.477] Browser ERROR   ./src/app/layout.js:18:1
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   return (
+     | ^^^^^^^^^^
+> 20 |     <html>
+     | ^^^^^^^^^^
+> 21 |       <body>
+     | ^^^^^^^^^^
+> 22 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 23 |       </body>
+     | ^^^^^^^^^^
+> 24 |     </html>
+     | ^^^^^^^^^^
+> 25 |   );
+     | ^^^^^^^^^^
+> 26 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:10:38.602] Browser ERROR   ./src/app/layout.js:18:25
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     |                         ^^^^^^^^^^
+  19 |   return (
+  20 |     <html>
+  21 |       <body>
+
+the name `RootLayout` is defined multiple times
+[00:10:38.602] Browser ERROR   ./src/app/layout.js:18:1
+Ecmascript file had an error
+  16 |
+  17 |
+> 18 | export default function RootLayout({ children }) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 19 |   return (
+     | ^^^^^^^^^^
+> 20 |     <html>
+     | ^^^^^^^^^^
+> 21 |       <body>
+     | ^^^^^^^^^^
+> 22 |         <AuthProvider>{children}</AuthProvider>
+     | ^^^^^^^^^^
+> 23 |       </body>
+     | ^^^^^^^^^^
+> 24 |     </html>
+     | ^^^^^^^^^^
+> 25 |   );
+     | ^^^^^^^^^^
+> 26 | }
+     | ^^
+
+the name `default` is exported multiple times
+[00:10:55.325] Server  LOG     ✓ Compiled in 47ms
+[00:10:56.999] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

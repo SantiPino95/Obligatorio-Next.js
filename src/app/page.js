@@ -1,7 +1,12 @@
+// app/page.js
 'use client';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import Card from '@/components/ui/Card';
+import ModalLocal from '@/components/local/ModalLocal';
+import ModalUsuario from '@/components/usuario/ModalUsuario'; 
+import ModalPlato from '@/components/plato/Modalplato';
 
 export default function HomePage() {
   const { user, logout } = useAuth();
@@ -9,148 +14,140 @@ export default function HomePage() {
   const [locales, setLocales] = useState([]);
   const [platos, setPlatos] = useState([]);
   const [vista, setVista] = useState('locales');
-  const [cargando, setCargando] = useState(true);
+  
+  // Modales
+  const [localModalOpen, setLocalModalOpen] = useState(false);
+  const [selectedLocalId, setSelectedLocalId] = useState(null);
+  
+  // Modal de usuario
+  const [userModalOpen, setUserModalOpen] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
-  // Redirigir si no hay usuario
+  // Modal de Plato
+  const [PlatoModalOpen , setPlatoModalOpen] = useState (false);
+  const [selectedPlatoId, setSelectedPlatoId] =useState(null);
+
+  // Cargar datos (igual que antes)
   useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user, router]);
+    if (!user) return;
 
-  // Cargar datos
-  useEffect(() => {
-    async function cargarDatos() {
-      if (!user) return;
-      
-      try {
-        setCargando(true);
-        
-        // Cargar locales - LA CLAVE ESTÁ AQUÍ
-        const resLocales = await fetch('https://api-react-taller-production.up.railway.app/api/locals');
-        const datosLocales = await resLocales.json();
-        
-        // ✅ IMPORTANTE: El array está en la primera propiedad del objeto
-        const arrayLocales = datosLocales[Object.keys(datosLocales)[0]] || [];
-        setLocales(arrayLocales);
-        
-        // Cargar platos - IGUAL
-        const resPlatos = await fetch('https://api-react-taller-production.up.railway.app/api/dishes');
-        const datosPlatos = await resPlatos.json();
-        const arrayPlatos = datosPlatos[Object.keys(datosPlatos)[0]] || [];
-        setPlatos(arrayPlatos);
-        
-      } catch (error) {
-        console.log('Error:', error);
-      } finally {
-        setCargando(false);
-      }
-    }
+    const fetchLocales = async () => {
+      const res = await fetch('https://api-react-taller-production.up.railway.app/api/locals');
+      const data = await res.json();
+      setLocales(data[Object.keys(data)[0]] || []);
+    };
 
-    cargarDatos();
+    const fetchPlatos = async () => {
+      const res = await fetch('https://api-react-taller-production.up.railway.app/api/dishes');
+      const data = await res.json();
+      setPlatos(data[Object.keys(data)[0]] || []);
+    };
+
+    fetchLocales();
+    fetchPlatos();
   }, [user]);
 
-  if (!user || cargando) {
-    return <div style={{ padding: '20px', textAlign: 'center' }}>Cargando...</div>;
+  if (!user) {
+    router.push('/login');
+    return null;
   }
 
+  const handleLocalClick = (localId) => {
+    setSelectedLocalId(localId);
+    setLocalModalOpen(true);
+  };
+
+  const handlePlatoClick = (platoId) => {
+    setSelectedPlatoId(platoId);
+    setPlatoModalOpen(true);
+  }
+
+  const handleCreatorClick = (creatorId) => {
+    setSelectedUserId(creatorId);
+    setUserModalOpen(true);
+  };
+
   return (
-    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-      {/* Header */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        marginBottom: '30px',
-        padding: '10px',
-        background: '#f0f0f0',
-        borderRadius: '5px'
-      }}>
-        <h1 style={{ margin: 0 }}>🍽️ GastroApp</h1>
-        <div>
-          <span>Hola, {user.name}</span>
-          <button 
-            onClick={() => router.push(`/usuario/${user.id}`)}
-            style={{ margin: '0 10px', padding: '5px 10px' }}
+    <div className="min-h-screen bg-gray-50">
+      {/* Header (igual) */}
+      <header className="bg-white shadow-sm p-4">
+        <div className="container-custom flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-purple-600">🍽️ GastroApp</h1>
+          <div className="flex items-center gap-4">
+            <span>Hola, {user.name}</span>
+            <button 
+              onClick={() => handleCreatorClick(user.id)} 
+              className="text-purple-600 hover:underline"
+            >
+              Mi perfil
+            </button>
+            <button onClick={logout} className="bg-red-500 text-white px-3 py-1 rounded">
+              Salir
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main className="container-custom py-8">
+        {/* Tabs (igual) */}
+        <div className="flex gap-4 mb-6">
+          <button
+            onClick={() => setVista('locales')}
+            className={`px-4 py-2 rounded ${vista === 'locales' ? 'bg-purple-600 text-white' : 'bg-gray-200'}`}
           >
-            Mi Perfil
+            Locales ({locales.length})
           </button>
-          <button onClick={logout} style={{ padding: '5px 10px' }}>Salir</button>
+          <button
+            onClick={() => setVista('platos')}
+            className={`px-4 py-2 rounded ${vista === 'platos' ? 'bg-purple-600 text-white' : 'bg-gray-200'}`}
+          >
+            Platos ({platos.length})
+          </button>
         </div>
-      </div>
 
-      {/* Botones de vista */}
-      <div style={{ marginBottom: '20px' }}>
-        <button 
-          onClick={() => setVista('locales')}
-          style={{ 
-            marginRight: '10px',
-            padding: '10px 20px',
-            background: vista === 'locales' ? 'blue' : '#ddd',
-            color: vista === 'locales' ? 'white' : 'black',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer'
-          }}
-        >
-          🍽️ Locales ({locales.length})
-        </button>
-        <button 
-          onClick={() => setVista('platos')}
-          style={{ 
-            padding: '10px 20px',
-            background: vista === 'platos' ? 'blue' : '#ddd',
-            color: vista === 'platos' ? 'white' : 'black',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer'
-          }}
-        >
-          🍲 Platos ({platos.length})
-        </button>
-      </div>
+        {/* Grid de cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {vista === 'locales' 
+            ? locales.map(local => (
+                <Card
+                  key={local.id}
+                  item={local}
+                  tipo="local"
+                  onClick={() => handleLocalClick(local.id)}
+                  onCreatorClick={handleCreatorClick}
+                />
+              ))
+            : platos.map(plato => (
+                <Card
+                  key={plato.id}
+                  item={plato}
+                  tipo="plato"
+                  onClick={() => handlePlatoClick(plato.id)}
+                  onCreatorClick={handleCreatorClick}
+                />
+              ))
+          }
+        </div>
+      </main>
 
-      {/* Listado */}
-      {vista === 'locales' ? (
-        <div>
-          <h2>Locales</h2>
-          {locales.map(local => (
-            <div 
-              key={local.id}
-              onClick={() => router.push(`/local/${local.id}`)}
-              style={{ 
-                border: '1px solid #ccc',
-                padding: '15px',
-                marginBottom: '10px',
-                cursor: 'pointer',
-                borderRadius: '5px'
-              }}
-            >
-              <h3 style={{ margin: '0 0 5px 0' }}>{local.name}</h3>
-              <p style={{ margin: '0', color: '#666' }}>📍 {local.city}</p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div>
-          <h2>Platos</h2>
-          {platos.map(plato => (
-            <div 
-              key={plato.id}
-              onClick={() => router.push(`/plato/${plato.id}`)}
-              style={{ 
-                border: '1px solid #ccc',
-                padding: '15px',
-                marginBottom: '10px',
-                cursor: 'pointer',
-                borderRadius: '5px'
-              }}
-            >
-              <h3 style={{ margin: '0 0 5px 0' }}>{plato.name}</h3>
-              <p style={{ margin: '0', color: '#666' }}>💰 ${plato.price}</p>
-            </div>
-          ))}
-        </div>
-      )}
+      {/* Modales */}
+      <ModalLocal
+        localId={selectedLocalId}
+        isOpen={localModalOpen}
+        onClose={() => setLocalModalOpen(false)}
+      />
+
+      <ModalUsuario
+        userId={selectedUserId}
+        isOpen={userModalOpen}
+        onClose={() => setUserModalOpen(false)}
+      />
+      <ModalPlato
+      platoId={selectedPlatoId}
+      isOpen={PlatoModalOpen}
+      onClose={() => setPlatoModalOpen(false)}
+      />
+
     </div>
   );
 }

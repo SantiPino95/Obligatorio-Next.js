@@ -50,7 +50,7 @@ export function AuthProvider({ children }) {
   );
 }
 
-// 3. Hook personalizado (AHORA ESTÁ AQUÍ, no en otro archivo)
+// 3. Hook personalizado 
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {

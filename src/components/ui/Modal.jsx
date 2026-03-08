@@ -1,6 +1,7 @@
 // components/ui/Modal.jsx
 'use client';
 import { useEffect } from 'react';
+import Button from './Button';
 
 export default function Modal({ isOpen, onClose, children }) {
   // Cerrar con tecla ESC
@@ -26,12 +27,12 @@ export default function Modal({ isOpen, onClose, children }) {
         <div className="p-6">
           {/* Botón cerrar */}
           <div className="flex justify-end">
-            <button 
+            <Button 
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700 text-2xl"
             >
               ✕
-            </button>
+            </Button>
           </div>
           
           {/* Contenido del modal */}

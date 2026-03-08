@@ -1,7 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import Input from '@/components/ui/Input';
+import Button from '@/components/ui/Button';
+import Textarea from '@/components/ui/Textarea';
+import Select from '@/components/ui/Select';
 
 export default function NuevoPlatoPage() {
   const { user } = useAuth();
@@ -32,7 +36,7 @@ export default function NuevoPlatoPage() {
         },
         body: JSON.stringify({
           ...formData,
-          price: Number(formData.price)
+          price: Number(formData.price) // Asegurar que price sea número
         })
       });
 
@@ -60,100 +64,117 @@ export default function NuevoPlatoPage() {
     });
   };
 
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user, router]);
+
   if (!user) {
-    router.push('/login');
     return null;
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <h1>Crear Nuevo Plato</h1>
-      
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre del plato *"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          style={{ padding: '10px' }}
-        />
-
-        <select
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-          style={{ padding: '10px' }}
-        >
-          <option value="ENTRADA">Entrada</option>
-          <option value="PRINCIPAL">Principal</option>
-          <option value="POSTRE">Postre</option>
-          <option value="BEBIDA">Bebida</option>
-          <option value="OTROS">Otros</option>
-        </select>
-
-        <input
-          type="number"
-          name="price"
-          placeholder="Precio *"
-          value={formData.price}
-          onChange={handleChange}
-          required
-          style={{ padding: '10px' }}
-        />
-
-        <textarea
-          name="description"
-          placeholder="Descripción"
-          value={formData.description}
-          onChange={handleChange}
-          style={{ padding: '10px', minHeight: '100px' }}
-        />
-
-        <input
-          type="text"
-          name="city"
-          placeholder="Ciudad *"
-          value={formData.city}
-          onChange={handleChange}
-          required
-          style={{ padding: '10px' }}
-        />
-
-        <input
-          type="number"
-          name="localId"
-          placeholder="ID del local *"
-          value={formData.localId}
-          onChange={handleChange}
-          required
-          style={{ padding: '10px' }}
-        />
-
-        <input
-          type="url"
-          name="image"
-          placeholder="URL de la imagen (opcional)"
-          value={formData.image}
-          onChange={handleChange}
-          style={{ padding: '10px' }}
-        />
-
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md p-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">🍽️ Crear Nuevo Plato</h1>
+        
         <button 
-          type="submit"
-          disabled={cargando}
-          style={{
-            padding: '15px',
-            background: 'green',
-            color: 'white',
-            border: 'none',
-            cursor: cargando ? 'not-allowed' : 'pointer'
-          }}
+          onClick={() => router.back()}
+          className="text-purple-600 hover:underline mb-4 block"
         >
-          {cargando ? 'Creando...' : 'Crear Plato'}
+          ← Volver
         </button>
-      </form>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Nombre */}
+          <Input
+            label="Nombre del plato *"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Ej: Milanesa con puré"
+            required
+          />
+
+          {/* Categoría - Usando Select con label incluido */}
+          <Select
+            label="Categoría *"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="ENTRADA">Entrada</option>
+            <option value="PRINCIPAL">Principal</option>
+            <option value="POSTRE">Postre</option>
+            <option value="BEBIDA">Bebida</option>
+            <option value="OTROS">Otros</option>
+          </Select>
+
+          {/* Precio */}
+          <Input
+            label="Precio *"
+            type="number"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            placeholder="Ej: 500"
+            required
+          />
+
+          {/* Descripción */}
+          <Textarea
+            label="Descripción"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Describe el plato..."
+            rows={4}
+          />
+
+          {/* Ciudad */}
+          <Input
+            label="Ciudad *"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            placeholder="Ej: Montevideo"
+            required
+          />
+
+          {/* ID del Local */}
+          <Input
+            label="ID del Local *"
+            type="number"
+            name="localId"
+            value={formData.localId}
+            onChange={handleChange}
+            placeholder="Ej: 1"
+            required
+          />
+
+          {/* URL de la imagen */}
+          <Input
+            label="URL de la imagen (opcional)"
+            type="url"
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+            placeholder="https://ejemplo.com/imagen.jpg"
+          />
+
+          {/* Botón */}
+          <Button 
+            type="submit"
+            disabled={cargando}
+            variant="primary"
+            fullWidth
+          >
+            {cargando ? 'Creando...' : 'Crear Plato'}
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }

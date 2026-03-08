@@ -4,7 +4,15 @@ import { useState } from 'react';
 
 export default function Card({ item, tipo, onClick, onCreatorClick }) {
   const [imageError, setImageError] = useState(false);
-  const imageUrl = item.image || item.photos?.[0];
+  const imageUrl = 
+  item.image || 
+  item.photos?.[0] || 
+  item.photo || 
+  item.imageUrl || 
+  item.img || 
+  item.photoUrl || 
+  item.picture || 
+  null;
 
   const gradientClass = tipo === 'local' 
     ? 'from-purple-100 to-pink-100' 

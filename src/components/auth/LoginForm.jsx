@@ -14,7 +14,6 @@ export default function LoginForm() {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  
   const { login } = useAuth();
   const router = useRouter();
 
@@ -23,13 +22,13 @@ export default function LoginForm() {
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Limpiar error cuando el usuario empieza a escribir
+    
     if (error) setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validaciones básicas
     if (!formData.username || !formData.password) {
       setError('Todos los campos son obligatorios');
@@ -37,12 +36,14 @@ export default function LoginForm() {
     }
 
     try {
+      
+     
       setLoading(true);
       setError('');
-      
+
       await login(formData.username, formData.password);
       router.push('/'); // Redirigir al home
-      
+
     } catch (err) {
       setError('Usuario o contraseña incorrectos');
     } finally {

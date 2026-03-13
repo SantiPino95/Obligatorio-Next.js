@@ -9,7 +9,7 @@ export default function UsuarioPerfilPage() {
   const router = useRouter();
   const { user } = useAuth();
   
-  // ✅ ESTADOS NECESARIOS
+ 
   const [usuario, setUsuario] = useState(null);
   const [locales, setLocales] = useState([]);
   const [platos, setPlatos] = useState([]);
@@ -114,7 +114,7 @@ export default function UsuarioPerfilPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Aquí van los locales cuando existan */}
+            {/* Aquí van los locales */}
             {locales.map(local => (
               <div key={local.id} className="border p-4 rounded-lg">
                 <h3 className="font-bold">{local.name}</h3>

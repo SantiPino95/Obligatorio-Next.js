@@ -6,7 +6,7 @@ export default function LocalDetallePage() {
   const { id } = useParams();
   const router = useRouter();
   const [local, setLocal] = useState(null);
-
+  
   useEffect(() => {
     fetch(`https://api-react-taller-production.up.railway.app/api/locals/${id}`)
       .then(res => res.json())

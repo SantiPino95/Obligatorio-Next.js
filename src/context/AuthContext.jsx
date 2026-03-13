@@ -22,20 +22,64 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (username, password) => {
+  try {
+    
+    
     const res = await fetch('https://api-react-taller-production.up.railway.app/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
     });
     
-    const data = await res.json();
+   
     
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    setUser(data.user);
+    const data = await res.json();
+   
+    
+    if (data.token && data.user) {
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setUser(data.user);
+      console.log('✅ Login exitoso:', data.user);
+    } else {
+      console.error('❌ Respuesta sin token:', data);
+      throw new Error('Usuario o contraseña incorrectos');
+    }
     
     return data;
+  } catch (error) {
+    console.error('❌ Error en login:', error);
+    throw error;
+  }
+};
+  const register = async (username, name, password) => {
+    try {
+      const res = await fetch('https://api-react-taller-production.up.railway.app/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, name, password })
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.error || 'Error en registro');
+      }
+      
+      // Si la API devuelve token (login automático después de registro)
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        setUser(data.user);
+      }
+      
+      return data;
+    } catch (error) {
+      console.error('Error en registro:', error);
+      throw error;
+    }
   };
+
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -44,7 +88,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login,register, logout }}>
       {children}
     </AuthContext.Provider>
   );

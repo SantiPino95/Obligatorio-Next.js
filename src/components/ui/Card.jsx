@@ -30,6 +30,13 @@ export default function Card({ item, tipo, onClick, onCreatorClick }) {
   // Obtener nombre del creador (puede venir en diferentes formatos)
   const creatorName = item.creatorName || item.userName || item.creator?.name || 'Usuario';
 
+  console.log('🎯 Item rating:', {
+  name: item.name,
+  rating: item.rating,
+  ratingAverage: item.ratingAverage,
+  averageRating: item.averageRating
+});
+
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
       {/* Imagen (clickeable) */}
@@ -65,9 +72,9 @@ export default function Card({ item, tipo, onClick, onCreatorClick }) {
             <>
               <span>📍</span>
               <span className="truncate">{item.city || 'Sin ciudad'}</span>
-              {item.rating > 0 && (
+              {item.ratingAverage > 0 && (
                 <span className="ml-auto text-yellow-500 flex items-center gap-1">
-                  ⭐ {item.rating.toFixed(1)}
+                  ⭐ {item.ratingAverage.toFixed(1)}
                 </span>
               )}
             </>

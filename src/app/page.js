@@ -11,7 +11,7 @@ import Select from '@/components/ui/Select';
 
 export default function HomePage() {
   // ============================================
-  // 1. HOOKS BÁSICOS (siempre igual)
+  // 1. HOOKS BÁSICOS 
   // ============================================
   const { user, logout } = useAuth();  // Datos del usuario
   const router = useRouter();           // Para navegar
@@ -121,7 +121,7 @@ export default function HomePage() {
   };
 
   const handleCreatorClick = (creatorId) => {
-    // Esta función la vamos a implementar después
+    
     console.log('Click en creador:', creatorId);
   };
 
@@ -339,7 +339,7 @@ export default function HomePage() {
         )}
 
         {/* ======================================== */}
-        {/* GRILLA DE CARDS (locales o platos) */}
+        {/* GRID DE CARDS (locales o platos) */}
         {/* ======================================== */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {vista === 'locales' 

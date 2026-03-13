@@ -39,7 +39,7 @@ export default function ModalLocal({ localId, isOpen, onClose }) {
   }, [localId, isOpen]);
 
 
-  
+
   const enviarReview = async (e) => {
     e.preventDefault();
     if (!user) {
@@ -89,21 +89,21 @@ export default function ModalLocal({ localId, isOpen, onClose }) {
           {/* Título */}
           <h2 className="text-2xl font-bold text-gray-800 mb-4">{local.name}</h2>
 
-        {/* Imagen con respaldo */}
-<div className="w-full h-64 rounded-lg mb-4 overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
-  {local.photos?.[0] && !imageError ? (
-    <img 
-      src={local.photos[0]} 
-      alt={local.name}
-      className="w-full h-full object-cover"
-      onError={() => setImageError(true)}
-    />
-  ) : (
-    <div className="w-full h-full flex items-center justify-center">
-      <span className="text-6xl">🏠</span>
-    </div>
-  )}
-</div>
+          {/* Imagen con respaldo */}
+          <div className="w-full h-64 rounded-lg mb-4 overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
+            {local.photos?.[0] && !imageError ? (
+              <img
+                src={local.photos[0]}
+                alt={local.name}
+                className="w-full h-full object-cover"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <span className="text-6xl">🏠</span>
+              </div>
+            )}
+          </div>
 
           {/* Información */}
           <div className="grid grid-cols-2 gap-4 mb-6">
@@ -129,7 +129,7 @@ export default function ModalLocal({ localId, isOpen, onClose }) {
                 <p className="font-semibold">{local.hours}</p>
               </div>
             )}
-   {/* 👇 USUARIO CON NAVEGACIÓN DIRECTA */}
+            {/* info del usuario */}
             <div className="bg-gray-50 p-3 rounded col-span-2">
               <p className="text-sm text-gray-500">Publicado por</p>
               <button
@@ -150,14 +150,14 @@ export default function ModalLocal({ localId, isOpen, onClose }) {
           {/* Reviews */}
           <div className="border-t pt-4">
             <h3 className="text-lg font-bold mb-3">Reviews</h3>
-            
+
             {/* Formulario de review (solo para usuarios logueados) */}
             {user && (
               <form onSubmit={enviarReview} className="bg-gray-50 p-4 rounded mb-4">
                 <h4 className="font-semibold mb-2">Deja tu review</h4>
                 <Select
                   value={review.rating}
-                  onChange={(e) => setReview({...review, rating: parseInt(e.target.value)})}
+                  onChange={(e) => setReview({ ...review, rating: parseInt(e.target.value) })}
                   className="w-full p-2 border rounded mb-2"
                 >
                   <option value="5">5 ⭐</option>
@@ -168,7 +168,7 @@ export default function ModalLocal({ localId, isOpen, onClose }) {
                 </Select>
                 <Textarea
                   value={review.comment}
-                  onChange={(e) => setReview({...review, comment: e.target.value})}
+                  onChange={(e) => setReview({ ...review, comment: e.target.value })}
                   placeholder="Tu comentario (opcional)"
                   className="w-full p-2 border rounded mb-2"
                   rows="3"
@@ -188,18 +188,18 @@ export default function ModalLocal({ localId, isOpen, onClose }) {
               local.reviews.map((rev, idx) => {
                 console.log('📝 Review completa:', rev);
                 const reviewerName = rev.user?.name || rev.user?.username || 'Usuario anónimo';
-                return(
-                <div key={idx} className="border-b pb-3 mb-3">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-semibold">{reviewerName}</span>
-                    <span className="text-yellow-500">{'⭐'.repeat(rev.rating)}</span>
-                  </div>
-                  {rev.comment && <p className="text-gray-600">{rev.comment}</p>}
-                </div>)
-}))
-             : (
-              <p className="text-gray-500 text-center py-4">No hay reviews todavía</p>
-            )}
+                return (
+                  <div key={idx} className="border-b pb-3 mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-semibold">{reviewerName}</span>
+                      <span className="text-yellow-500">{'⭐'.repeat(rev.rating)}</span>
+                    </div>
+                    {rev.comment && <p className="text-gray-600">{rev.comment}</p>}
+                  </div>)
+              }))
+              : (
+                <p className="text-gray-500 text-center py-4">No hay reviews todavía</p>
+              )}
           </div>
         </div>
       )}

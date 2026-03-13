@@ -81,7 +81,7 @@ export default function ModalPlato({ platoId, isOpen, onClose }) {
         <div>
 
 
-          {/* 1️⃣ IMAGEN con emoji de respaldo */}
+          {/* emoji de respaldo */}
           <div className="w-full h-64 mb-6 rounded-lg overflow-hidden bg-gradient-to-br from-green-100 to-blue-100">
             {plato.image && !imageError ? (
               <img

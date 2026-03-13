@@ -25,7 +25,7 @@ export default function RegisterForm() {
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Limpiar error del campo que se está editando
+    
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: '' });
     }
@@ -60,10 +60,13 @@ export default function RegisterForm() {
     }
 
     try {
+
+      
       setLoading(true);
       
       await register(formData.username, formData.name, formData.password);
       router.push('/'); // Redirigir al home
+      
       
     } catch (err) {
       setErrors({ 
